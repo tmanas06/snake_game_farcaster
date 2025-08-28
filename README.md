@@ -62,6 +62,22 @@ A classic retro snake game built as a Farcaster mini app with blockchain integra
 5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
+** note the below is the example .env file
+```bash
+# Default values for local development
+# For production, update these URLs to your deployed domain
+KV_REST_API_TOKEN=''
+KV_REST_API_URL=''
+NEXT_PUBLIC_URL='http://localhost:3000'
+NEXTAUTH_URL='http://localhost:3000'
+
+NEYNAR_API_KEY="your api"
+NEYNAR_CLIENT_ID="your client id"
+SEED_PHRASE=""
+NEXTAUTH_SECRET="keyxx"
+USE_TUNNEL="true"
+```
+
 ## 🎯 How to Play
 
 ### Game Controls
