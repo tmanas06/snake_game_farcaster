@@ -4,16 +4,13 @@ import { useEffect } from "react";
 import { useMiniApp } from "@neynar/react";
 import { Header } from "~/components/ui/Header";
 import { Footer } from "~/components/ui/Footer";
-import { HomeTab, ActionsTab, ContextTab, WalletTab } from "~/components/ui/tabs";
+import { HomeTab } from "~/components/ui/tabs";
 import { USE_WALLET } from "~/lib/constants";
 import { useNeynarUser } from "../hooks/useNeynarUser";
 
 // --- Types ---
 export enum Tab {
   Home = "home",
-  Actions = "actions",
-  Context = "context",
-  Wallet = "wallet",
 }
 
 export interface AppProps {
@@ -24,33 +21,31 @@ export interface AppProps {
  * App component serves as the main container for the mini app interface.
  * 
  * This component orchestrates the overall mini app experience by:
- * - Managing tab navigation and state
- * - Handling Farcaster mini app initialization
+ * - Managing Farcaster mini app initialization
  * - Coordinating wallet and context state
  * - Providing error handling and loading states
- * - Rendering the appropriate tab content based on user selection
+ * - Rendering the snake game content
  * 
  * The component integrates with the Neynar SDK for Farcaster functionality
- * and Wagmi for wallet management. It provides a complete mini app
- * experience with multiple tabs for different functionality areas.
+ * and provides a complete mini app experience focused on the snake game.
  * 
  * Features:
- * - Tab-based navigation (Home, Actions, Context, Wallet)
+ * - Snake game as the main content
  * - Farcaster mini app integration
  * - Wallet connection management
  * - Error handling and display
  * - Loading states for async operations
  * 
  * @param props - Component props
- * @param props.title - Optional title for the mini app (defaults to "Neynar Starter Kit")
+ * @param props.title - Optional title for the mini app (defaults to "Snake Game")
  * 
  * @example
  * ```tsx
- * <App title="My Mini App" />
+ * <App title="Snake Game" />
  * ```
  */
 export default function App(
-  { title }: AppProps = { title: "Neynar Starter Kit" }
+  { title }: AppProps = { title: "Snake Game" }
 ) {
   // --- Hooks ---
   const {
@@ -94,27 +89,24 @@ export default function App(
   return (
     <div
       style={{
-        paddingTop: context?.client.safeAreaInsets?.top ?? 0,
-        paddingBottom: context?.client.safeAreaInsets?.bottom ?? 0,
-        paddingLeft: context?.client.safeAreaInsets?.left ?? 0,
-        paddingRight: context?.client.safeAreaInsets?.right ?? 0,
+        paddingTop: context?.client?.safeAreaInsets?.top ?? 0,
+        paddingBottom: context?.client?.safeAreaInsets?.bottom ?? 0,
+        paddingLeft: context?.client?.safeAreaInsets?.left ?? 0,
+        paddingRight: context?.client?.safeAreaInsets?.right ?? 0,
       }}
     >
       {/* Header should be full width */}
       <Header neynarUser={neynarUser} />
 
-      {/* Main content and footer should be centered */}
+      {/* Main content - only snake game */}
       <div className="container py-2 pb-20">
         {/* Main title */}
         <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
 
-        {/* Tab content rendering */}
+        {/* Tab content rendering - only Home tab */}
         {currentTab === Tab.Home && <HomeTab />}
-        {currentTab === Tab.Actions && <ActionsTab />}
-        {currentTab === Tab.Context && <ContextTab />}
-        {currentTab === Tab.Wallet && <WalletTab />}
 
-        {/* Footer with navigation */}
+        {/* Footer with navigation - only Home tab */}
         <Footer activeTab={currentTab as Tab} setActiveTab={setActiveTab} showWallet={USE_WALLET} />
       </div>
     </div>

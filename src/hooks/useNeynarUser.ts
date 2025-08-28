@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 
 export interface NeynarUser {
   fid: number;
+  username: string;
+  displayName?: string;
+  pfp?: {
+    url: string;
+  };
+  followerCount?: number;
   score: number;
 }
 
@@ -27,10 +33,25 @@ export function useNeynarUser(context?: { user?: { fid?: number } }) {
         if (data.users?.[0]) {
           setUser(data.users[0]);
         } else {
-          setUser(null);
+          // Create a mock user if API doesn't return data
+          setUser({
+            fid: context.user!.fid!,
+            username: `user${context.user!.fid}`,
+            displayName: `User ${context.user!.fid}`,
+            score: 0,
+          });
         }
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => {
+        setError(err.message);
+        // Create a mock user on error
+        setUser({
+          fid: context.user!.fid!,
+          username: `user${context.user!.fid}`,
+          displayName: `User ${context.user!.fid}`,
+          score: 0,
+        });
+      })
       .finally(() => setLoading(false));
   }, [context?.user?.fid]);
 

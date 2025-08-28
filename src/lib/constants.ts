@@ -22,13 +22,13 @@ export const APP_URL: string = process.env.NEXT_PUBLIC_URL!;
  * The name of the mini app as displayed to users.
  * Used in titles, headers, and app store listings.
  */
-export const APP_NAME: string = 'snake_game';
+export const APP_NAME: string = 'Snake Game';
 
 /**
  * A brief description of the mini app's functionality.
  * Used in app store listings and metadata.
  */
-export const APP_DESCRIPTION: string = 'mini game on farcaster';
+export const APP_DESCRIPTION: string = 'Classic retro snake game with Farcaster integration and creator economy';
 
 /**
  * The primary category for the mini app.
@@ -40,7 +40,7 @@ export const APP_PRIMARY_CATEGORY: string = 'games';
  * Tags associated with the mini app.
  * Used for search and discovery in app stores.
  */
-export const APP_TAGS: string[] = ['neynar', 'starter-kit', 'demo'];
+export const APP_TAGS: string[] = ['snake', 'game', 'farcaster', 'creator-economy', 'zora', 'neynar'];
 
 // --- Asset URLs ---
 /**
